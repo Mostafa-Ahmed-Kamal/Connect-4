@@ -3,7 +3,6 @@ import java.util.LinkedList;
 public class RootState implements State{
 	
 	byte[][] Board = new byte[6][7];
-	LinkedList<State> children = new LinkedList<State>();
 	
 	public RootState(byte[][] Board) {
 		for(int i=0 ; i<6 ; i++) {
@@ -12,6 +11,8 @@ public class RootState implements State{
 			}
 		}
 	}
+	
+	@Override
 	public void setChildren(){
 		// implement SetChildren
 	}
@@ -20,6 +21,7 @@ public class RootState implements State{
 		return Board;
 	}
 	
+	@Override
 	public LinkedList<State> getChildren() {
 		return children;
 	}
