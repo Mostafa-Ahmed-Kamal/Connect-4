@@ -4,6 +4,7 @@ public class BoardState {
 
 	private static final char[] DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8','9', 'A', 'B', 'C',
 			'D', 'E', 'F', 'G', 'H','I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q'};
+	private static final int rows = 6, cols = 7;
 
 	private int row;
 	private int col;
@@ -49,11 +50,11 @@ public class BoardState {
 		if (board == null)
 			return null;
 		LinkedList<BoardState> children = new LinkedList<>();
-		for (int j = 0; j < 7; j++) {
+		for (int j = 0; j < cols; j++) {
 			if (board[0][j] != 0)
 				continue;
 			BoardState child;
-			for (int i = 1; i < 6; i++) {
+			for (int i = 1; i < rows; i++) {
 				if (board[i][j] != 0){
 					if (isMax)
 						board[i-1][j] = 2;
@@ -69,7 +70,7 @@ public class BoardState {
 					board[i-1][j] = 0;
 					break;
 				}
-				else if (i == 5){
+				else if (i == rows-1){
 					if (isMax)
 						board[i][j] = 2;
 					else
@@ -94,8 +95,8 @@ public class BoardState {
 			return null;
 		StringBuilder idBuilder = new StringBuilder();
 		int index = 0;
-		for (int j = 0; j < 7; j++) {
-			for (int i = 0; i < 6; i += 3) {
+		for (int j = 0; j < cols; j++) {
+			for (int i = 0; i < rows; i += 3) {
 				index += board[i][j] + board[i+1][j] * 3 + board[i+2][j] * 9;
 				idBuilder.append(DIGITS[index]);
 				index = 0;
